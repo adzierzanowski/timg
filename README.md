@@ -4,12 +4,13 @@ Display an image in terminal.
 
 # Screenshots
 ![](https://i.imgur.com/y8Uf8FV.png)
+![](https://i.imgur.com/cgqjMmW.png)
 ![](https://i.imgur.com/JG7ATZO.png)
 ![](https://i.imgur.com/nNrcwBB.png)
 ![](https://i.imgur.com/hqQtFkC.png)
 
 # usage
-    usage: timg [-h] [-b BLOCK] [-c STRING] [-r] [-s N] [-8] FILENAME
+    usage: timg [-h] [-b BLOCK] [-c STRING] [-r] [-s N] [-8] [-x] FILENAME
 
     Display an image in terminal.
 
@@ -35,3 +36,5 @@ Display an image in terminal.
                             uglier (because it's just 256 colors) but allows a
                             pallette subset to be given and supports dumb terminal
                             emulators)
+      -x, --high-resolution
+                            display image using half blocks
