@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+
+import sys
+import argparse
+from PIL import Image
+from random import choice
+from math import sqrt, inf
+
+class ANSI:
+  colors = [(0, 0, 0), (128, 0, 0), (0, 128, 0), (128, 128, 0), (0, 0, 128), (128, 0, 128), (0, 128, 128), (192, 192, 192), (128, 128, 128), (255, 0, 0), (0, 255, 0), (255, 255, 0), (0, 0, 255), (255, 0, 255), (0, 255, 255), (255, 255, 255), (0, 0, 0), (0, 0, 95), (0, 0, 135), (0, 0, 175), (0, 0, 215), (0, 0, 255), (0, 95, 0), (0, 95, 95), (0, 95, 135), (0, 95, 175), (0, 95, 215), (0, 95, 255), (0, 135, 0), (0, 135, 95), (0, 135, 135), (0, 135, 175), (0, 135, 215), (0, 135, 255), (0, 175, 0), (0, 175, 95), (0, 175, 135), (0, 175, 175), (0, 175, 215), (0, 175, 255), (0, 215, 0), (0, 215, 95), (0, 215, 135), (0, 215, 175), (0, 215, 215), (0, 215, 255), (0, 255, 0), (0, 255, 95), (0, 255, 135), (0, 255, 175), (0, 255, 215), (0, 255, 255), (95, 0, 0), (95, 0, 95), (95, 0, 135), (95, 0, 175), (95, 0, 215), (95, 0, 255), (95, 95, 0), (95, 95, 95), (95, 95, 135), (95, 95, 175), (95, 95, 215), (95, 95, 255), (95, 135, 0), (95, 135, 95), (95, 135, 135), (95, 135, 175), (95, 135, 215), (95, 135, 255), (95, 175, 0), (95, 175, 95), (95, 175, 135), (95, 175, 175), (95, 175, 215), (95, 175, 255), (95, 215, 0), (95, 215, 95), (95, 215, 135), (95, 215, 175), (95, 215, 215), (95, 215, 255), (95, 255, 0), (95, 255, 95), (95, 255, 135), (95, 255, 175), (95, 255, 215), (95, 255, 255), (135, 0, 0), (135, 0, 95), (135, 0, 135), (135, 0, 175), (135, 0, 215), (135, 0, 255), (135, 95, 0), (135, 95, 95), (135, 95, 135), (135, 95, 175), (135, 95, 215), (135, 95, 255), (135, 135, 0), (135, 135, 95), (135, 135, 135), (135, 135, 175), (135, 135, 215), (135, 135, 255), (135, 175, 0), (135, 175, 95), (135, 175, 135), (135, 175, 175), (135, 175, 215), (135, 175, 255), (135, 215, 0), (135, 215, 95), (135, 215, 135), (135, 215, 175), (135, 215, 215), (135, 215, 255), (135, 255, 0), (135, 255, 95), (135, 255, 135), (135, 255, 175), (135, 255, 215), (135, 255, 255), (175, 0, 0), (175, 0, 95), (175, 0, 135), (175, 0, 175), (175, 0, 215), (175, 0, 255), (175, 95, 0), (175, 95, 95), (175, 95, 135), (175, 95, 175), (175, 95, 215), (175, 95, 255), (175, 135, 0), (175, 135, 95), (175, 135, 135), (175, 135, 175), (175, 135, 215), (175, 135, 255), (175, 175, 0), (175, 175, 95), (175, 175, 135), (175, 175, 175), (175, 175, 215), (175, 175, 255), (175, 215, 0), (175, 215, 95), (175, 215, 135), (175, 215, 175), (175, 215, 215), (175, 215, 255), (175, 255, 0), (175, 255, 95), (175, 255, 135), (175, 255, 175), (175, 255, 215), (175, 255, 255), (215, 0, 0), (215, 0, 95), (215, 0, 135), (215, 0, 175), (215, 0, 215), (215, 0, 255), (215, 95, 0), (215, 95, 95), (215, 95, 135), (215, 95, 175), (215, 95, 215), (215, 95, 255), (215, 135, 0), (215, 135, 95), (215, 135, 135), (215, 135, 175), (215, 135, 215), (215, 135, 255), (215, 175, 0), (215, 175, 95), (215, 175, 135), (215, 175, 175), (215, 175, 215), (215, 175, 255), (215, 215, 0), (215, 215, 95), (215, 215, 135), (215, 215, 175), (215, 215, 215), (215, 215, 255), (215, 255, 0), (215, 255, 95), (215, 255, 135), (215, 255, 175), (215, 255, 215), (215, 255, 255), (255, 0, 0), (255, 0, 95), (255, 0, 135), (255, 0, 175), (255, 0, 215), (255, 0, 255), (255, 95, 0), (255, 95, 95), (255, 95, 135), (255, 95, 175), (255, 95, 215), (255, 95, 255), (255, 135, 0), (255, 135, 95), (255, 135, 135), (255, 135, 175), (255, 135, 215), (255, 135, 255), (255, 175, 0), (255, 175, 95), (255, 175, 135), (255, 175, 175), (255, 175, 215), (255, 175, 255), (255, 215, 0), (255, 215, 95), (255, 215, 135), (255, 215, 175), (255, 215, 215), (255, 215, 255), (255, 255, 0), (255, 255, 95), (255, 255, 135), (255, 255, 175), (255, 255, 215), (255, 255, 255), (8, 8, 8), (18, 18, 18), (28, 28, 28), (38, 38, 38), (48, 48, 48), (58, 58, 58), (68, 68, 68), (78, 78, 78), (88, 88, 88), (98, 98, 98), (108, 108, 108), (118, 118, 118), (128, 128, 128), (138, 138, 138), (148, 148, 148), (158, 158, 158), (168, 168, 168), (178, 178, 178), (188, 188, 188), (198, 198, 198), (208, 208, 208), (218, 218, 218), (228, 228, 228), (238, 238, 238)]
+
+  end = "\033[0m"
+
+  def fg(color_code):
+    return "\033[38;5;{}m".format(color_code)
+
+  def bg(color_code):
+    return "\033[48;5;{}m".format(color_code)
+
+  def fg_true(r, g, b):
+    return "\033[38;2;{};{};{}m".format(r, g, b)
+
+  def bg_true(r, g, b):
+    return "\033[48;2;{};{};{}m".format(r, g, b)
+
+  def closest(r, g, b, block=None):
+    i = 0
+    current_min = inf
+    current_ansi = None
+    distance_table = []
+    
+    if block == 'standard':
+      accepted_codes = range(8)
+    elif block == 'intensive':
+      accepted_codes = range(9, 9+8)
+    elif block == 'cube':
+      accepted_codes = range(16, 232)
+    elif block == 'grayscale':
+      accepted_codes = range(232, 256)
+    elif block is not None:
+      if type(eval(block)) == range or type(eval(block)) == list:
+        accepted_codes = eval(block)
+      else:
+        accepted_codes = range(256)
+    else:
+      accepted_codes = range(256)
+
+    for color in ANSI.colors:
+      distance = sqrt((r - color[0]) ** 2 + (g - color[1]) ** 2 + (b - color[2]) ** 2)
+      if distance < current_min:
+        if i in accepted_codes:
+          current_min = distance
+          current_ansi = i
+      i += 1
+
+    return current_ansi
+
+parser = argparse.ArgumentParser(description="Display an image in terminal.")
+parser.add_argument('file', type=str, help='image file to be shown', metavar='FILENAME')
+parser.add_argument('-b', '--block', type=str, help='use colors from a subset of 8-bit ANSI pallette (works only with -8 switch). BLOCK can be: "standard", "intensive", "cube", "grayscale" or a python list or range defining some numbers from 0 to 255 (e.g. "[n for n in range(20, 120, 10) if n != 100]" or "[0, 231]" which prints image in black and white).', metavar='BLOCK')
+parser.add_argument('-c', '--charset', type=str, help='print image using characters from the provided STRING', metavar='STRING')
+parser.add_argument('-r', '--random-chars', help='print characters from the provided charset in a random order', action='store_true')
+parser.add_argument('-s', '--size', type=int, help='number of characters to be printed horizontally', metavar='N', default=70)
+#parser.add_argument('-t', '--true-color', help='use 24-bit color pallette (much faster)', action='store_true')
+parser.add_argument('-8', '--8-bit', dest='rgb8', help='use 8-bit color pallette (much slower (because it finds the closest ANSI color code for each pixel) and uglier (because it\'s just 256 colors) but allows a pallette subset to be given and supports dumb terminal emulators)', action='store_true')
+args = parser.parse_args()
+
+image = Image.open(args.file)
+w, h = image.size
+
+# width and height of an image mapped onto a bloxel
+bw = w // args.size
+bh = h // int((args.size / 1.9) * h/w)
+
+# bloxels count in both dimensions
+bloxels_w = w // bw
+bloxels_h = h // bh
+
+image = image.resize((bloxels_w, bloxels_h))
+pixels = image.load()
+
+# terminal "pixels" -- colored blocks
+bloxels = []
+
+# populate bloxels map with ANSI color codes
+for hc in range(bloxels_h):
+  bloxels.append([])
+  for wc in range(bloxels_w):
+    try:
+      bloxels[hc].append(pixels[wc,hc][:3])
+    except IndexError:
+      pass
+
+# display all bloxels
+i = 0
+for row in bloxels:
+  for col in row:
+    if not args.rgb8:
+      if args.charset is None:
+        print("{} {}".format(ANSI.bg_true(*col), ANSI.end), end='')
+      else:
+        if args.random_chars:
+          char = choice(args.charset)
+        else:
+          char = args.charset[i % len(args.charset)]
+        print("{}{}{}".format(ANSI.fg_true(*col), char, ANSI.end), end='')
+    else:
+      color_code = ANSI.closest(*col, args.block)
+      if args.charset is None:
+        print("{} {}".format(ANSI.bg(color_code), ANSI.end), end='')
+      else:
+        if args.random_chars:
+          char = choice(args.charset)
+        else:
+          char = args.charset[i % len(args.charset)]
+        print("{}{}{}".format(ANSI.fg(color_code), char, ANSI.end), end='')
+    i += 1
+  print()
