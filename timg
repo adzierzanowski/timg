@@ -96,13 +96,13 @@ for hc in range(bloxels_h):
 
 # display all bloxels
 if args.high_resolution:
-  even = [bloxels[i] for i in range(len(bloxels)) if i % 2 == 0]
-  odd = [bloxels[i] for i in range(len(bloxels)) if i % 2 == 1]
+  even = bloxels[0::2]
+  odd = bloxels[1::2]
 
-  for i in range(len(even)):
-    for j in range(len(even[i])):
+  for i, row in enumerate(even):
+    for j, col in enumerate(row):
       try:
-        print("{}{}▄{}".format(ANSI.bg_true(*even[i][j]), ANSI.fg_true(*odd[i][j]), ANSI.end), end='')
+        print("{}{}▄{}".format(ANSI.bg_true(*col), ANSI.fg_true(*odd[i][j]), ANSI.end), end='')
       except IndexError:
         pass
     print()
