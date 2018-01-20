@@ -102,10 +102,10 @@ if args.high_resolution:
   for i, row in enumerate(even):
     for j, col in enumerate(row):
       try:
-        print("{}{}▄{}".format(ANSI.bg_true(*col), ANSI.fg_true(*odd[i][j]), ANSI.end), end='')
+        print("{}{}▄".format(ANSI.bg_true(*col), ANSI.fg_true(*odd[i][j])), end='')
       except IndexError:
         pass
-    print()
+    print(ANSI.end)
 
 else:
   i = 0
@@ -113,22 +113,22 @@ else:
     for col in row:
       if not args.rgb8:
         if args.charset is None:
-          print("{} {}".format(ANSI.bg_true(*col), ANSI.end), end='')
+          print("{} ".format(ANSI.bg_true(*col)), end='')
         else:
           if args.random_chars:
             char = choice(args.charset)
           else:
             char = args.charset[i % len(args.charset)]
-          print("{}{}{}".format(ANSI.fg_true(*col), char, ANSI.end), end='')
+          print("{}{}".format(ANSI.fg_true(*col), char), end='')
       else:
         color_code = ANSI.closest(*col, args.block)
         if args.charset is None:
-          print("{} {}".format(ANSI.bg(color_code), ANSI.end), end='')
+          print("{} ".format(ANSI.bg(color_code)), end='')
         else:
           if args.random_chars:
             char = choice(args.charset)
           else:
             char = args.charset[i % len(args.charset)]
-          print("{}{}{}".format(ANSI.fg(color_code), char, ANSI.end), end='')
+          print("{}{}".format(ANSI.fg(color_code), char), end='')
       i += 1
-    print()
+    print(ANSI.end)
