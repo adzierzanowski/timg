@@ -51,12 +51,10 @@ def display(bloxels,
         for i, row in enumerate(even):
             for j, col in enumerate(row):
                 try:
-                    print(
-                            "{}{}▄".format(
+                    print("{}{}▄".format(
                                 ANSI.bg_true(*col),
                                 ANSI.fg_true(*odd[i][j])
-                                ), end=''
-                            )
+                                ), end='')
                 except IndexError:
                     pass
             print(ANSI.end)
