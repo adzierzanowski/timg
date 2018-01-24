@@ -75,7 +75,7 @@ def display(bloxels,
                             char = charset[i % len(charset)]
                         print("{}{}".format(ANSI.fg_true(*col), char), end='')
                 else:
-                    color_code = ANSI.closest(*col, block)
+                    color_code = ANSI.closest(col, block)
                     if charset is None:
                         print("{} ".format(ANSI.bg(color_code)), end='')
                     else:

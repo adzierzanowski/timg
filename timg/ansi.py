@@ -275,7 +275,8 @@ class ANSI:
     def bg_true(r, g, b):
         return "\033[48;2;{};{};{}m".format(r, g, b)
 
-    def closest(r, g, b, block=None):
+    def closest(rgb, block=None):
+        r, g, b = rgb
         i = 0
         current_min = inf
         current_ansi = None
