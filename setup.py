@@ -9,6 +9,7 @@ setup(
     author_email='a.dzierzanowski1@gmail.com',
     license='MIT',
     packages=['timg'],
+    include_package_data=True,
     install_requires=['pillow'],
     scripts=['bin/timg'],
     zip_safe=False
