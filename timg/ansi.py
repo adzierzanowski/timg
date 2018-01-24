@@ -1,4 +1,4 @@
-from math import sqrt, inf
+from math import sqrt
 
 
 class ANSI:
@@ -278,7 +278,7 @@ class ANSI:
     def closest(rgb, block=None):
         r, g, b = rgb
         i = 0
-        current_min = inf
+        current_min = float('inf')
         current_ansi = None
         distance_table = []
 
