@@ -46,7 +46,14 @@ parser.add_argument('-x', '--high-resolution',
 
 args = parser.parse_args()
 
-image = Image.open(args.file)
+try:
+    image = Image.open(args.file)
+except IsADirectoryError as e:
+    sys.stderr.write('{}\n'.format(e))
+    sys.exit(1)
+except OSError as e:
+    sys.stderr.write('{}\n'.format(e))
+    sys.exit(1)
 
 try:
     bloxels = timg.create_bloxels(
@@ -54,8 +61,8 @@ try:
         size=args.size,
         high_resolution=args.high_resolution
     )
-except TypeError:
-    sys.stderr.write("Couldn't read the image properly.\n")
+except TypeError as e:
+    sys.stderr.write('Couldn\'t properly read the file.\n')
     sys.exit(1)
 
 timg.display(
