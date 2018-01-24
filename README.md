@@ -9,7 +9,14 @@ Display an image in terminal.
 ![](https://i.imgur.com/nNrcwBB.png)
 ![](https://i.imgur.com/hqQtFkC.png)
 
-# usage
+# Setup 
+Clone or download this repository, `cd` into it and run:
+
+    $ pip3 install .
+
+Now you can use the `timg` command in your terminal.
+
+# Usage
     usage: timg [-h] [-b BLOCK] [-c STRING] [-r] [-s N] [-8] [-x] FILENAME
 
     Display an image in terminal.

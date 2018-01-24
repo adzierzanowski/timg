@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+
+import sys
+import argparse
+
+from PIL import Image
+
+import timg
+
+parser = argparse.ArgumentParser(description="Display an image in terminal.")
+
+parser.add_argument('file',
+    type=str,
+    help='image file to be shown',
+    metavar='FILENAME')
+parser.add_argument('-b', '--block',
+    type=str,
+    help='''use colors from a subset of 8-bit ANSI pallette
+    (works only with -8 switch). BLOCK can be: "standard", "intensive",
+    "cube", "grayscale" or a python list or range defining some numbers
+    from 0 to 255 (e.g. "[n for n in range(20, 120, 10) if n != 100]"
+    or "[0, 231]" which prints image in black and white).''',
+    metavar='BLOCK')
+parser.add_argument('-c', '--charset',
+    type=str,
+    help='print image using characters from the provided STRING',
+    metavar='STRING')
+parser.add_argument('-r', '--random-chars',
+    help='print characters from the provided charset in a random order',
+    action='store_true')
+parser.add_argument('-s', '--size',
+    type=int,
+    help='number of characters to be printed horizontally',
+    metavar='N',
+    default=70)
+parser.add_argument('-8', '--8-bit',
+    dest='true_color',
+    help='''use 8-bit color pallette (much slower (because it finds the
+    closest ANSI color code for each pixel) and uglier (because it\'s just
+    256 colors) but allows a pallette subset to be given and supports dumb
+    terminal emulators)''',
+    action='store_false')
+parser.add_argument('-x', '--high-resolution',
+    help='display image using half blocks',
+    action='store_true')
+
+args = parser.parse_args()
+
+image = Image.open(args.file)
+
+try:
+  bloxels = timg.create_bloxels(
+    image,
+    size=args.size,
+    high_resolution=args.high_resolution
+  )
+except TypeError:
+  sys.stderr.write("Couldn't read the image properly.\n")
+  sys.exit(1)
+
+timg.display(
+  bloxels,
+  high_resolution=args.high_resolution,
+  charset=args.charset,
+  true_color=args.true_color,
+  random_chars=args.random_chars,
+  block=args.block
+)
