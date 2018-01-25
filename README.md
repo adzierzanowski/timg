@@ -45,3 +45,4 @@ Now you can use the `timg` command in your terminal.
                             emulators)
       -x, --high-resolution
                             display image using half blocks
+
