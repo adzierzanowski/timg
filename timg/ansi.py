@@ -25,22 +25,25 @@ class ANSI:
 
     # Return closest 8-bit ANSI color code for a given RGB value
     def closest(rgb, block=None):
-        if block == 'standard':
-            accepted_codes = range(8)
-        elif block == 'intensive':
-            accepted_codes = range(9, 9+8)
-        elif block == 'cube':
-            accepted_codes = range(16, 232)
-        elif block == 'grayscale':
-            accepted_codes = range(232, 256)
-        elif block is not None:
-            block_type = type(eval(block))
-            if block_type in [range, list]:
-                accepted_codes = eval(block)
-            else:
+        blocks = {
+            'standard': range(8),
+            'intensive': range(9, 17),
+            'cube': range(16, 232),
+            'grayscale': range(232, 256)
+        }
+
+        try:
+            accepted_codes = blocks[block]
+        except KeyError:
+            if block is None:
                 accepted_codes = range(256)
-        else:
-            accepted_codes = range(256)
+            else:
+                block_type = type(eval(block))
+
+                if block_type in [range, list]:
+                    accepted_codes = eval(block)
+                else:
+                    accepted_codes = range(256)
 
         i = 0
         r, g, b = rgb
@@ -50,6 +53,8 @@ class ANSI:
         for color in ANSI.colors:
             cr, cg, cb = color
             rgb_difference = r - cr, g - cg, b - cb
+
+            # this is simply a distance between two points in R^3 space
             distance = sqrt(sum(map(lambda m: pow(m, 2), rgb_difference)))
 
             if distance < current_min:

@@ -54,7 +54,7 @@ def display(bloxels,
                     print("{}{}▄".format(
                                 ANSI.bg_true(*col),
                                 ANSI.fg_true(*odd[i][j])
-                                ), end='')
+                                ), end='').encode('utf-8')
                 except IndexError:
                     pass
             print(ANSI.end)
