@@ -54,9 +54,12 @@ def display(bloxels,
                     print("{}{}▄".format(
                                 ANSI.bg_true(*col),
                                 ANSI.fg_true(*odd[i][j])
-                                ), end='').encode('utf-8')
+                                ), end='')
                 except IndexError:
                     pass
+                except UnicodeEncodeError:
+                    sys.stderr.write('''Your terminal doesn\'t support
+                        Unicode or your locale is not set up properly.''')
             print(ANSI.end)
 
     else:
