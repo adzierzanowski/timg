@@ -58,7 +58,7 @@ def display(bloxels,
                 except IndexError:
                     pass
                 except UnicodeEncodeError:
-                    sys.stderr.write('Your terminal doesn\'t support'
+                    sys.stderr.write('Your terminal doesn\'t support '
                         'Unicode or your locale is not set up properly.\n')
                     sys.exit(1)
             print(ANSI.end)
@@ -87,4 +87,6 @@ def display(bloxels,
                             char = charset[i % len(charset)]
                         print("{}{}".format(ANSI.fg(color_code), char), end='')
                 i += 1
+
             print(ANSI.end)
+

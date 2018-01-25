@@ -73,3 +73,4 @@ timg.display(
     random_chars=args.random_chars,
     block=args.block
 )
+
