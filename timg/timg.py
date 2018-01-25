@@ -59,7 +59,8 @@ def display(bloxels,
                     pass
                 except UnicodeEncodeError:
                     sys.stderr.write('''Your terminal doesn\'t support
-                        Unicode or your locale is not set up properly.''')
+                        Unicode or your locale is not set up properly.\n''')
+                    sys.exit(1)
             print(ANSI.end)
 
     else:
