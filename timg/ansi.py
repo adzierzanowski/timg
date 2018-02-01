@@ -28,7 +28,7 @@ class ANSI:
         ranges = block.split(',')
         codes = []
         for rng in ranges:
-            rng_bounds = list(map(lambda m: int(m), rng.split('..')))
+            rng_bounds = [int(n) for n in rng.split('..')]
 
             if len(rng_bounds) == 1:
                 codes.append(rng_bounds[0])
