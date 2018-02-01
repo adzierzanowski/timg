@@ -1,3 +1,4 @@
+import sys
 import json
 
 from pkg_resources import resource_filename
@@ -49,13 +50,17 @@ class ANSI:
             'grayscale': range(232, 256)
         }
 
-        try:
-            accepted_codes = blocks[block]
-        except KeyError:
-            if block is None:
-                accepted_codes = range(256)
-            else:
-                accepted_codes = ANSI.parse_block(block)
+        if block is None:
+            accepted_codes = range(256)
+        else:
+            try:
+                accepted_codes = blocks[block]
+            except KeyError:
+                try:
+                    accepted_codes = ANSI.parse_block(block)
+                except ValueError:
+                    sys.stderr.write('Couldn\'t parse the block.\n')
+                    sys.exit(1)
 
         i = 0
         r, g, b = rgb

@@ -64,12 +64,15 @@ except TypeError as e:
     sys.stderr.write('Couldn\'t properly read the file.\n')
     sys.exit(1)
 
-timg.display(
-    bloxels,
-    high_resolution=args.high_resolution,
-    charset=args.charset,
-    true_color=args.true_color,
-    random_chars=args.random_chars,
-    block=args.block
-)
+try:
+    timg.display(
+        bloxels,
+        high_resolution=args.high_resolution,
+        charset=args.charset,
+        true_color=args.true_color,
+        random_chars=args.random_chars,
+        block=args.block
+    )
+except KeyboardInterrupt:
+    print('\033[0m')
 
