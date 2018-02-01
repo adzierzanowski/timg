@@ -29,10 +29,9 @@ Now you can use the `timg` command in your terminal.
       -b BLOCK, --block BLOCK
                             use colors from a subset of 8-bit ANSI pallette (works
                             only with -8 switch). BLOCK can be: "standard",
-                            "intensive", "cube", "grayscale" or a python list or
-                            range defining some numbers from 0 to 255 (e.g. "[n
-                            for n in range(20, 120, 10) if n != 100]" or "[0,
-                            231]" which prints image in black and white).
+                            "intensive", "cube", "grayscale" or an expression in
+                            form of ranges separated by a comma, e.g.
+                            "0..10,20..40,128" or "0,231"
       -c STRING, --charset STRING
                             print image using characters from the provided STRING
       -r, --random-chars    print characters from the provided charset in a random
@@ -45,4 +44,3 @@ Now you can use the `timg` command in your terminal.
                             emulators)
       -x, --high-resolution
                             display image using half blocks
-

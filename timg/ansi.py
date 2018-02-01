@@ -23,6 +23,23 @@ class ANSI:
     def bg_true(r, g, b):
         return "\033[48;2;{};{};{}m".format(r, g, b)
 
+    def parse_block(block):
+        ranges = block.split(',')
+        codes = []
+        for rng in ranges:
+            rng_bounds = list(map(lambda m: int(m), rng.split('..')))
+
+            if len(rng_bounds) == 1:
+                codes.append(rng_bounds[0])
+
+            elif len(rng_bounds) == 2:
+                codes += list(range(*rng_bounds))
+
+            else:
+                pass
+
+        return codes
+
     # Return closest 8-bit ANSI color code for a given RGB value
     def closest(rgb, block=None):
         blocks = {
@@ -38,12 +55,7 @@ class ANSI:
             if block is None:
                 accepted_codes = range(256)
             else:
-                block_type = type(eval(block))
-
-                if block_type in [range, list]:
-                    accepted_codes = eval(block)
-                else:
-                    accepted_codes = range(256)
+                accepted_codes = ANSI.parse_block(block)
 
         i = 0
         r, g, b = rgb
