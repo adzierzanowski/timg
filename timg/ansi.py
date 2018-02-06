@@ -81,4 +81,3 @@ class ANSI:
             i += 1
 
         return current_ansi
-

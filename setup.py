@@ -14,4 +14,3 @@ setup(
     scripts=['bin/timg'],
     zip_safe=False
 )
-
