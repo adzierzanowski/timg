@@ -2,19 +2,19 @@
 
 Display an image in terminal.
 
-# Screenshots
-![](https://i.imgur.com/y8Uf8FV.png)
-![](https://i.imgur.com/cgqjMmW.png)
-![](https://i.imgur.com/JG7ATZO.png)
-![](https://i.imgur.com/nNrcwBB.png)
-![](https://i.imgur.com/hqQtFkC.png)
-
 # Setup 
 Clone or download this repository, `cd` into it and run:
 
     $ pip3 install .
 
 Now you can use the `timg` command in your terminal.
+
+# Screenshots
+![](https://i.imgur.com/y8Uf8FV.png)
+![](https://i.imgur.com/cgqjMmW.png)
+![](https://i.imgur.com/JG7ATZO.png)
+![](https://i.imgur.com/nNrcwBB.png)
+![](https://i.imgur.com/hqQtFkC.png)
 
 # Usage
     usage: timg [-h] [-b BLOCK] [-c STRING] [-r] [-s N] [-8] [-x] FILENAME
