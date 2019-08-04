@@ -20,7 +20,7 @@ class ASCIIMethod(RenderMethod):
     div = 255 // len(ASCIIMethod.CHARS)
     for i, p in enumerate(pix):
       if line_counter % 2 == 0:
-        string += ASCIIMethod.CHARS[p//div]
+        string += ASCIIMethod.CHARS[p // div - 1]
       if i % w == w-1:
         if line_counter % 2 == 0:
           string += '\n'
