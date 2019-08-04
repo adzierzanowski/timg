@@ -1,14 +1,15 @@
 from setuptools import setup
+from src import version
 
 setup(
-  name='timg',
-  version='0.4.0',
-  description='Display an image in terminal.',
+  name=version.TIMG_PROG_NAME,
+  version=version.TIMG_VERSION,
+  description=version.TIMG_DESC,
   url='https://github.com/adzierzanowski/timg',
   author='Aleksander Dzierżanowski',
   author_email='a.dzierzanowski1@gmail.com',
   license='MIT',
-  packages=['src'],
+  packages=['src', 'src/methods'],
   include_package_data=True,
   install_requires=['pillow'],
   scripts=['bin/timg'],

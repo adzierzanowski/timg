@@ -1,2 +1,3 @@
-from .timg import create_bloxels, display
-from .sixel import Sixel
+from .version import *
+from .renderer import Renderer
+from .methods import *
