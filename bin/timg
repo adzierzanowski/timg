@@ -22,6 +22,11 @@ parser.add_argument(
   help='filename of an image')
 
 parser.add_argument(
+  '-i', '--invert-background',
+  help='invert grayscale in ASCII mode',
+  action='store_true')
+
+parser.add_argument(
   '-m', '--method',
   type=str,
   help='''name of a rendering method (use `-m list` to list available methods,
@@ -125,4 +130,7 @@ elif method in [
   if args.size is None:
     renderer.resize(shutil.get_terminal_size()[0] - 1)
 
-renderer.render(method)
+if method == timg.ASCIIMethod:
+  renderer.render(method, args.invert_background)
+else:
+  renderer.render(method)
