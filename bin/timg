@@ -2,91 +2,11 @@
 
 import sys
 import shutil
-import argparse
 
 import src as timg
+from src.methods import METHODS, show_available_methods
 
-parser = argparse.ArgumentParser(
-  timg.version.TIMG_PROG_NAME,
-  description=timg.version.TIMG_DESC)
-
-parser.add_argument(
-  '-V', '--version',
-  help='print version and exit',
-  action='store_true')
-
-parser.add_argument(
-  'filename',
-  nargs='?',
-  type=str,
-  help='filename of an image')
-
-parser.add_argument(
-  '-i', '--invert-background',
-  help='invert grayscale in ASCII mode',
-  action='store_true')
-
-parser.add_argument(
-  '-m', '--method',
-  type=str,
-  help='''name of a rendering method (use `-m list` to list available methods,
-  the default is a24h)''',
-  metavar='METHOD',
-  default='a24h')
-
-parser.add_argument(
-  '-r', '--reduce-colors',
-  type=int,
-  help='reduce color palette of an input image (1-256)',
-  metavar='N')
-
-parser.add_argument(
-  '-s', '--size',
-  type=int,
-  help='width of an image',
-  metavar='W')
-
-args = parser.parse_args()
-
-
-
-
-methods = {
-  'sixel': {
-    'class': timg.SixelMethod,
-    'desc': 'use sixels - best quality but lowest support'
-  },
-
-  'a8f': {
-    'class': timg.Ansi8FblockMethod,
-    'desc': 'low-resolution ANSI 8-bit palette'
-  },
-
-  'a24f': {
-    'class': timg.Ansi24FblockMethod,
-    'desc': 'low-resolution ANSI 24-bit palette',
-  },
-
-  'a8h': {
-    'class': timg.Ansi8HblockMethod,
-    'desc': 'high-resolution ANSI 8-bit palette'
-  },
-
-  'a24h': {
-    'class': timg.Ansi24HblockMethod,
-    'desc': 'high-resolution ANSI 24-bit palette'
-  },
-  
-  'ascii': {
-    'class': timg.ASCIIMethod,
-    'desc': 'ASCII art'
-  }
-}
-
-def show_available_methods():
-  print('Available methods:')
-  for k, v in methods.items():
-    print('  * {:10} {}'.format(k, v['desc']))
+parser, args = timg.argparser.parse_args()
 
 if args.version:
   print(timg.version.TIMG_PROG_NAME, timg.version.TIMG_VERSION)
@@ -111,7 +31,7 @@ if args.reduce_colors is not None:
   renderer.reduce_colors(args.reduce_colors)
 
 try:
-  method = methods[args.method]['class']
+  method = METHODS[args.method]['class']
 except KeyError:
   print('No such method.')
   show_available_methods()
