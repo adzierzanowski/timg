@@ -33,8 +33,7 @@ parser.add_argument(
   '-r', '--reduce-colors',
   type=int,
   help='reduce color palette of an input image (1-255)',
-  metavar='N',
-  default=16)
+  metavar='N')
 
 parser.add_argument(
   '-s', '--size',
@@ -43,6 +42,9 @@ parser.add_argument(
   metavar='W')
 
 args = parser.parse_args()
+
+
+
 
 methods = {
   'sixel': {
@@ -91,8 +93,12 @@ if args.filename is None:
 
 renderer = timg.Renderer()
 renderer.load_image_from_file(args.filename)
+
 if args.size is not None:
   renderer.resize(args.size)
+
+if args.reduce_colors is not None:
+  renderer.reduce_colors(args.reduce_colors)
 
 try:
   method = methods[args.method]['class']
@@ -102,7 +108,8 @@ except KeyError:
   sys.exit(1)
 
 if method == timg.SixelMethod:
-  renderer.reduce_colors(args.reduce_colors)
+  if args.reduce_colors is None:
+    renderer.reduce_colors(16)
 
 elif method in [
   timg.Ansi24FblockMethod,
