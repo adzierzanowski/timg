@@ -13,7 +13,7 @@ Now you can use the `timg` command in your terminal.
 ![](https://i.imgur.com/E95M3SJ.png)
 
 # Usage
-        usage: timg [-h] [-V] [-m METHOD] [-r N] [-s W] [filename]
+        usage: timg [-h] [-V] [-i] [-m METHOD] [-r N] [-s W] [filename]
 
         print an image in terminal
 
@@ -23,11 +23,13 @@ Now you can use the `timg` command in your terminal.
         optional arguments:
           -h, --help            show this help message and exit
           -V, --version         print version and exit
+          -i, --invert-background
+                                invert grayscale in ASCII mode
           -m METHOD, --method METHOD
                                 name of a rendering method (use `-m list` to list
-                                available methods, the default is a24h
+                                available methods, the default is a24h)
           -r N, --reduce-colors N
-                                reduce color palette of an input image (1-255)
+                                reduce color palette of an input image (1-256)
           -s W, --size W        width of an image
 
 # zsh completions
