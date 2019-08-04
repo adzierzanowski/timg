@@ -23,6 +23,9 @@ class Renderer:
     self.image = self.image.convert('P', palette=Image.ADAPTIVE, colors=n)
     self.image = self.image.convert('RGB', palette=Image.ADAPTIVE, colors=n)
 
+  def grayscale(self):
+    self.image = self.image.convert('L')
+
   def render(self, method_class):
     method = method_class(self.image)
     print(method.to_string())

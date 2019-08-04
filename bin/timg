@@ -70,6 +70,11 @@ methods = {
   'a24h': {
     'class': timg.Ansi24HblockMethod,
     'desc': 'high-resolution ANSI 24-bit palette'
+  },
+  
+  'ascii': {
+    'class': timg.ASCIIMethod,
+    'desc': 'ASCII art'
   }
 }
 
@@ -115,7 +120,8 @@ elif method in [
   timg.Ansi24FblockMethod,
   timg.Ansi24HblockMethod,
   timg.Ansi8FblockMethod,
-  timg.Ansi8HblockMethod]:
+  timg.Ansi8HblockMethod,
+  timg.ASCIIMethod]:
   if args.size is None:
     renderer.resize(shutil.get_terminal_size()[0] - 1)
 
