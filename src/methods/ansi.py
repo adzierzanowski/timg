@@ -76,29 +76,6 @@ class ANSIMethod:
 
     return string
 
-  def to_fblock(self, bits):
-    w, h = self.image.size
-    pix = self.image.load()
-
-    string = ''
-
-    for y in range(0, h, 2):
-      for x in range(w):
-        try:
-          bg_color = pix[x, y][:3]
-        except IndexError:
-          continue
-
-        if bits == 8:
-          bg = ANSIMethod.bg8(*bg_color)
-        elif bits == 24:
-          bg = ANSIMethod.bg24(*bg_color)
-
-        string += '{} '.format(bg)
-      string += '{}\n'.format(ANSIMethod.TRAILER)
-
-    return string
-
   def to_8_bit_hblock(self):
     return self.to_block(8, hblock=True)
 
