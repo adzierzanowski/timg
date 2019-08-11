@@ -1,5 +1,5 @@
 from setuptools import setup
-from src import version
+from src.timg import version
 
 setup(
   name=version.TIMG_PROG_NAME,
@@ -9,7 +9,8 @@ setup(
   author='Aleksander Dzierżanowski',
   author_email='a.dzierzanowski1@gmail.com',
   license='MIT',
-  packages=['src', 'src/methods'],
+  packages=['timg', 'timg/methods'],
+  package_dir={'': 'src'},
   include_package_data=True,
   install_requires=['pillow'],
   scripts=['bin/timg'],

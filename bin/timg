@@ -3,8 +3,8 @@
 import sys
 import shutil
 
-import src as timg
-from src.methods import METHODS, show_available_methods
+import timg
+from timg.methods import METHODS, show_available_methods
 
 parser, args = timg.argparser.parse_args()
 
