@@ -5,6 +5,7 @@ import shutil
 
 import timg
 from timg.methods import METHODS, show_available_methods
+from timg.methods.ascii import show_available_charsets
 
 parser, args = timg.argparser.parse_args()
 
@@ -14,6 +15,10 @@ if args.version:
 
 if args.method == 'list':
   show_available_methods()
+  sys.exit(0)
+
+if args.charset == 'list':
+  show_available_charsets()
   sys.exit(0)
 
 if args.filename is None:
@@ -51,6 +56,6 @@ elif method in [
     renderer.resize(shutil.get_terminal_size()[0] - 1)
 
 if method == timg.ASCIIMethod:
-  renderer.render(method, args.invert_background)
+  renderer.render(method, args.invert_background, args.charset)
 else:
   renderer.render(method)

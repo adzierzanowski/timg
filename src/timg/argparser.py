@@ -19,6 +19,14 @@ def parse_args():
     help='filename of an image')
 
   parser.add_argument(
+    '-c', '--charset',
+    type=str,
+    help='''character set to be used in ASCII mode (type `-c list` to list
+    available charsets, the default is simple)''',
+    default='simple'
+  )
+
+  parser.add_argument(
     '-i', '--invert-background',
     help='invert grayscale in ASCII mode',
     action='store_true')

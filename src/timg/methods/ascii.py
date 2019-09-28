@@ -1,11 +1,16 @@
+import math
 from .method import RenderMethod
 
 class ASCIIMethod(RenderMethod):
-  CHARS = ' .:-=+*#%@'
+  CHARSETS = {
+    'simple': ' .:-=+*#%@',
+    'extended': ' .\'`^",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$'
+  }
 
-  def __init__(self, image, invert_background=False):
+  def __init__(self, image, invert_background=False, charset='simple'):
     RenderMethod.__init__(self, image)
     self.invert_background = invert_background
+    self.chars = ASCIIMethod.CHARSETS[charset]
 
   def grayscale(self):
     self.image = self.image.convert('L')
@@ -17,17 +22,21 @@ class ASCIIMethod(RenderMethod):
     pix = self.image.getdata()
 
     string = ''
-    chars = ASCIIMethod.CHARS
     if self.invert_background:
-      chars = list(reversed(chars))
+      self.chars = list(reversed(self.chars))
     line_counter = 0
-    div = 255 // len(chars)
+    div = math.ceil(255 / len(self.chars))
     for i, p in enumerate(pix):
       if line_counter % 2 == 0:
-        string += chars[p // div - 1]
+        string += self.chars[p // div - 1]
       if i % w == w-1:
         if line_counter % 2 == 0:
           string += '\n'
         line_counter += 1
 
     return string
+
+def show_available_charsets():
+  print('Available charsets:')
+  for charset in ASCIIMethod.CHARSETS:
+    print('  * {}'.format(charset))
