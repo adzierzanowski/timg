@@ -20,5 +20,15 @@ setup(
       'timg = timg.__main__:main'
     ]
   },
+  classifiers=[
+    'Development Status :: 5 - Production/Stable',
+    'Environment :: Console',
+    'Intended Audience :: End Users/Desktop',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3',
+    'Topic :: Multimedia :: Graphics :: Viewers',
+  ],
   zip_safe=False
 )
+
