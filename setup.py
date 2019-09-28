@@ -1,10 +1,12 @@
 from setuptools import setup
-from src.timg import version
+
+from src.timg import meta 
+
 
 setup(
-  name=version.TIMG_PROG_NAME,
-  version=version.TIMG_VERSION,
-  description=version.TIMG_DESC,
+  name=meta.TIMG_PROG_NAME,
+  version=meta.TIMG_VERSION,
+  description=meta.TIMG_DESC,
   url='https://github.com/adzierzanowski/timg',
   author='Aleksander Dzierżanowski',
   author_email='a.dzierzanowski1@gmail.com',
@@ -13,6 +15,10 @@ setup(
   package_dir={'': 'src'},
   include_package_data=True,
   install_requires=['pillow'],
-  scripts=['bin/timg'],
+  entry_points={
+    'console_scripts': [
+      'timg = timg.__main__:main'
+    ]
+  },
   zip_safe=False
 )

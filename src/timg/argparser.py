@@ -1,6 +1,6 @@
 import argparse
 
-from .version import TIMG_PROG_NAME, TIMG_DESC
+from .meta import TIMG_PROG_NAME, TIMG_DESC
 
 def parse_args():
   parser = argparse.ArgumentParser(
