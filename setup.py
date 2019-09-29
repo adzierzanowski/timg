@@ -3,10 +3,14 @@ from setuptools import setup
 from src.timg import meta 
 
 
+with open('README.md', 'r') as f:
+  long_description = f.read()
+
 setup(
   name=meta.TIMG_PROG_NAME,
   version=meta.TIMG_VERSION,
   description=meta.TIMG_DESC,
+  long_description=long_description,
   url='https://github.com/adzierzanowski/timg',
   author='Aleksander Dzierżanowski',
   author_email='a.dzierzanowski1@gmail.com',
