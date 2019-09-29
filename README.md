@@ -2,9 +2,9 @@
 Display an image in terminal.
 
 # Setup 
-Clone or download this repository, `cd` into it and run:
+`timg` is available as a package on PyPI:
 
-    $ pip3 install .
+    $ pip install timg
 
 Now you can use the `timg` command in your terminal.
 
