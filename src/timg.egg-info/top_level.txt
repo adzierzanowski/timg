@@ -1,2 +1,0 @@
-timg
-timg/methods
