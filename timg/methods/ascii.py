@@ -1,5 +1,7 @@
 import math
+
 from .method import RenderMethod
+
 
 class ASCIIMethod(RenderMethod):
   CHARSETS = {

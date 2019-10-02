@@ -1,11 +1,12 @@
 import argparse
 
-from .meta import TIMG_PROG_NAME, TIMG_DESC
+from . import meta
+
 
 def parse_args():
   parser = argparse.ArgumentParser(
-    TIMG_PROG_NAME,
-    description=TIMG_DESC)
+    meta.NAME,
+    description=meta.DESC)
 
   parser.add_argument(
     '-V', '--version',

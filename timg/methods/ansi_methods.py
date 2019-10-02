@@ -1,5 +1,6 @@
-from .method import RenderMethod
 from .ansi import ANSIMethod
+from .method import RenderMethod
+
 
 class Ansi8FblockMethod(RenderMethod):
   def __init__(self, image):

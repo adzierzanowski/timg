@@ -1,9 +1,11 @@
-import sys
 import shutil
+import sys
 
 import timg
+
 from .methods import METHODS, show_available_methods
 from .methods.ascii import show_available_charsets
+
 
 def main():
   parser, args = timg.argparser.parse_args()

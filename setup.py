@@ -1,22 +1,22 @@
 from setuptools import setup
 
-from src.timg import meta 
+from timg import meta 
 
 
 with open('README.md', 'r') as f:
   long_description = f.read()
 
 setup(
-  name=meta.TIMG_PROG_NAME,
-  version=meta.TIMG_VERSION,
-  description=meta.TIMG_DESC,
+  name=meta.NAME,
+  version=meta.VERSION,
+  description=meta.DESC,
   long_description=long_description,
+  long_description_content_type='text/markdown',
   url='https://github.com/adzierzanowski/timg',
   author='Aleksander Dzierżanowski',
   author_email='a.dzierzanowski1@gmail.com',
   license='MIT',
   packages=['timg', 'timg/methods'],
-  package_dir={'': 'src'},
   include_package_data=True,
   install_requires=['pillow'],
   entry_points={
