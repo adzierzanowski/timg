@@ -11,7 +11,7 @@ def main():
   parser, args = timg.argparser.parse_args()
 
   if args.version:
-    print(timg.meta.TIMG_PROG_NAME, timg.meta.TIMG_VERSION)
+    print(timg.meta.NAME, timg.meta.VERSION)
     sys.exit(1)
 
   if args.method == 'list':
