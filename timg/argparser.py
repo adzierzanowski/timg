@@ -1,6 +1,7 @@
 import argparse
 
 from . import meta
+from platfrom import system
 
 
 def parse_args():
@@ -38,7 +39,7 @@ def parse_args():
     help='''name of a rendering method (use `-m list` to list available methods,
     the default is a24h)''',
     metavar='METHOD',
-    default='a24h')
+    default='a24h' if system() != "Windows" else "ascii")
 
   parser.add_argument(
     '-r', '--reduce-colors',
