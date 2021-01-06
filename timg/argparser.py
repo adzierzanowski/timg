@@ -1,7 +1,8 @@
 import argparse
 
-from . import meta
 from platform import system
+
+from . import meta
 
 
 def parse_args():
