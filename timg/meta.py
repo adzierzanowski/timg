@@ -1,3 +1,3 @@
 NAME = 'timg'
-VERSION = '1.1.4'
+VERSION = '1.1.5'
 DESC = 'print an image in terminal'

@@ -1,6 +1,6 @@
 from setuptools import setup
 
-from timg import meta 
+from timg import meta
 
 
 with open('README.md', 'r') as f:
