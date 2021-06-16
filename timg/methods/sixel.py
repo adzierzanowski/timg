@@ -37,7 +37,7 @@ class SixelMethod(RenderMethod):
 
     # Define color registers
     register_string = ''
-    for i, (_, color) in enumerate(self.image.getcolors()):
+    for i, (_, color) in enumerate(self.image.getcolors(maxcolors=0x1000000)):
       self.registers[color] = i
       self.register_count += 1
       register_string += '#{};2;{};{};{}'.format(
@@ -65,4 +65,3 @@ class SixelMethod(RenderMethod):
       register_string,
       ''.join(line_data),
       SixelMethod.TRAILER)
-    

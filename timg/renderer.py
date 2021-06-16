@@ -27,6 +27,9 @@ class Renderer:
   def grayscale(self):
     self.image = self.image.convert('L')
 
-  def render(self, method_class, *args):
-    method = method_class(self.image, *args)
-    print(method.to_string())
+  def to_string(self, method_class, *args, **kwargs):
+    method = method_class(self.image, *args, **kwargs)
+    return method.to_string()
+
+  def render(self, method_class, *args, **kwargs):
+    print(self.to_string(method_class, *args, **kwargs))
