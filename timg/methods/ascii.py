@@ -30,7 +30,7 @@ class ASCIIMethod(RenderMethod):
     div = math.ceil(255 / len(self.chars))
     for i, p in enumerate(pix):
       if line_counter % 2 == 0:
-        string += self.chars[p // div - 1]
+        string += self.chars[p // div]
       if i % w == w-1:
         if line_counter % 2 == 0:
           string += '\n'
