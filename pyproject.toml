@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "timg"
+description = "print an image in terminal"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+  { name = "Aleksander Dzierżanowski", email = "a.dzierzanowski1@gmail.com" },
+]
+requires-python = ">=3"
+dependencies = ["pillow"]
+dynamic = ["version"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Topic :: Multimedia :: Graphics :: Viewers",
+]
+
+[project.urls]
+Homepage = "https://github.com/adzierzanowski/timg"
+
+[project.scripts]
+timg = "timg.__main__:main"
+
+[tool.setuptools]
+packages = ["timg", "timg.methods"]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = { attr = "timg.meta.VERSION" }
